@@ -4,6 +4,8 @@ const dotenv = require("dotenv");
 
 const errorHandler = require("./middleware/error");
 
+const user = require("./routes/user");
+
 const app = express();
 
 const connectDB = require("./config/db");
@@ -14,6 +16,8 @@ dotenv.config({ path: "./config/config.env" });
 app.use(express.json());
 
 app.use(errorHandler);
+
+app.use("api/user", user);
 
 const PORT = process.env.PORT || 5000;
 
