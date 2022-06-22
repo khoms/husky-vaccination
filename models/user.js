@@ -13,6 +13,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter Email."],
     lowercase: true,
+    unique: true,
     validate(value) {
       if (!validator.isEmail(value)) {
         throw new Error("Invalid email address.");
@@ -24,11 +25,12 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Please enter password"],
     minlength: 5,
     trim: true,
-    validate(value) {
-      if (value.toLowerCase().include("password")) {
-        throw new Error('Password cannot contain "password');
-      }
-    },
+    // validate(value) {
+    //   console.log(value);
+    //   if (value.toLowerCase().include("password")) {
+    //     throw new Error('Password cannot contain "password');
+    //   }
+    // },
   },
   phone: {
     type: String,

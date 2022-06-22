@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(
-      "mongodb://localhost:27017/scheduleNotification",
+      "mongodb://localhost:27017/Husky_Vaccination",
       {
         // const conn = await mongoose.connect(
         //   "db link",
