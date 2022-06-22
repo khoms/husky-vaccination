@@ -19,7 +19,7 @@ const errorHandler = (err, req, res, next) => {
   }
 
   //Mongoose Vlaidation error
-  if (err.name === "ValidatorError") {
+  if (err.name === "ValidationError") {
     const message = Object.values(err.errors).map((val) => val.message);
     error = new ErrorResponse(message, 400);
   }

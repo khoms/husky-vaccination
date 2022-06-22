@@ -6,19 +6,24 @@ const errorHandler = require("./middleware/error");
 
 const user = require("./routes/user");
 
-const app = express();
+// const app = express();
 
 const connectDB = require("./config/db");
 connectDB();
 
+var cors = require("cors");
+const app = express(cors({ origin: "*" }));
+
+app.use(express.json());
 dotenv.config({ path: "./config/config.env" });
 
 app.use(express.json());
 
 app.use(errorHandler);
 
-app.use("api/user", user);
+app.use("/api/user", user);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
+const ipAdd = process.env.IP_ADD;
 
-app.listen(PORT, process.env.IP_ADD, console.log("Server running in " + PORT));
+app.listen(PORT, ipAdd, console.log("Server running in " + ipAdd + ":" + PORT));
