@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 
-const vaccine = require("./vaccine");
-
 const dogSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -28,16 +26,19 @@ const dogSchema = new mongoose.Schema({
     required: true,
     default: "https://iol.edu.np/wp-content/uploads/2021/03/unnamed.png",
   },
-  vaccine: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "vaccine",
-    },
-  ],
+  vaccine: {
+    type: Array,
+  },
+
   userId: {
     type: String,
     required: [true, "UserId is required"],
   },
 });
+
+dogSchema.index(
+  { name: 1, userId: 1 },
+  { unique: [true, "Two dogs with same name is invalid"] }
+);
 
 module.exports = mongoose.model("Dog", dogSchema);

@@ -1,10 +1,20 @@
 const ErrorResponse = require("../utils/errorResponse");
 const Dog = require("../models/dog");
+const Vaccine = require("../models/vaccine");
 
 //create new user
 exports.createDog = async (req, res, next) => {
   try {
-    const dog = await Dog.create(req.body);
+    let name, breed, totalDays, gender, userId, vaccine;
+    const data = {
+      name: req.body.name,
+      breed: req.body.breed,
+      totalDays: req.body.totalDays,
+      gender: req.body.gender,
+      userId: req.body.userId,
+      vaccine: new Vaccine(),
+    };
+    const dog = await Dog.create(data);
     res.status(201).json({ success: true, data: dog });
   } catch (err) {
     next(err);
