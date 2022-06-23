@@ -6,6 +6,7 @@ const errorHandler = require("./middleware/error");
 
 const user = require("./routes/user");
 const auth = require("./routes/auth");
+const dog = require("./routes/dog");
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(errorHandler);
 
 app.use("/api/user", user);
 app.use("/api/auth", auth);
+app.use("/api/dog", dog);
 
 const PORT = process.env.PORT || 3000;
 const ipAdd = process.env.IP_ADD;
