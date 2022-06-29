@@ -3,8 +3,8 @@ const path = require("path");
 
 const Admin = require("../models/admin");
 
-//get all users
-//Route GET/users
+//get all admins
+//Route GET/admins
 exports.getAdmins = async (req, res, next) => {
   try {
     const admins = await Admin.create(req.body);
@@ -13,10 +13,10 @@ exports.getAdmins = async (req, res, next) => {
   } catch (error) {
     res.status(400).json({ success: false });
   }
-  // res.status(200).json({success:true,msg:'Show all users'});
+  // res.status(200).json({success:true,msg:'Show all admins'});
 };
 
-//get single users
+//get single admins
 
 exports.getAdmin = async (req, res, next) => {
   try {
@@ -31,10 +31,10 @@ exports.getAdmin = async (req, res, next) => {
     // res.status(400).json({success:false})
     next(err);
   }
-  // res.status(200).json({success:true,msg:'Show user'+req.params.id});
+  // res.status(200).json({success:true,msg:'Show admin'+req.params.id});
 };
 
-//create new user
+//create new admin
 
 exports.createAdmin = async (req, res, next) => {
   try {
@@ -45,10 +45,10 @@ exports.createAdmin = async (req, res, next) => {
     // res.status(400).json({success:false})
   }
   // console.log(req.body);
-  // res.status(200).json({success:true,msg:'Created new User'});
+  // res.status(200).json({success:true,msg:'Created new admin'});
 };
 
-//update user
+//update admin
 exports.updateAdmin = async (req, res, next) => {
   try {
     const admin = await Admin.findByIdAndUpdate(req.params.id, req.body, {
@@ -58,14 +58,14 @@ exports.updateAdmin = async (req, res, next) => {
     if (!admin) {
       return res.status(400).json({ success: false });
     }
-    res.status(200).json({ success: true, data: user });
+    res.status(200).json({ success: true, data: admin });
   } catch (err) {
     res.status(400).json({ success: false });
   }
-  // res.status(200).json({success:true,msg:'Update user'+req.params.id});
+  // res.status(200).json({success:true,msg:'Update admin'+req.params.id});
 };
 
-//delete user
+//delete admin
 
 exports.deleteAdmin = async (req, res, next) => {
   try {
@@ -78,5 +78,5 @@ exports.deleteAdmin = async (req, res, next) => {
     res.status(400).json({ success: false });
   }
 
-  // res.status(200).json({success:true,msg:'Delete user'+req.params.id});
+  // res.status(200).json({success:true,msg:'Delete admin'+req.params.id});
 };
