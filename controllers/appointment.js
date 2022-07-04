@@ -7,7 +7,7 @@ const Appointment = require("../models/appointment");
 //Route GET/appointments
 exports.getAppointments = async (req, res, next) => {
   try {
-    const appointments = await Appointment.create(req.body);
+    const appointments = await Appointment.find();
 
     res.status(200).json({
       success: true,
@@ -16,6 +16,7 @@ exports.getAppointments = async (req, res, next) => {
     });
   } catch (error) {
     res.status(400).json({ success: false });
+    console.log(error);
   }
   // res.status(200).json({success:true,msg:'Show all appointments'});
 };

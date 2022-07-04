@@ -6,17 +6,38 @@ const Appointment = (props) => {
   const [appointmentList, setAppointmentList] = useState();
 
   const getAppointments = async () => {
-    const response = await axios.get("192.168.1.164:3000/api/appointment");
-    if (response.ok) {
-      console.log("ok send");
-    }
-    const data = await response.json();
-    setAppointmentList(data);
-    console.log(data);
+    fetch("http://localhost:3000/api/appointment")
+      .then((res) => res.json())
+      .then((appointment) => {
+        console.log(appointment);
+        setAppointmentList(appointment.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // const response = await axios.get("http://localhost:3000/api/appointment");
+    // console.log(response);
+    // if (response.ok) {
+    //   console.log("ok send");
+    // }
+    // const data = await response.json();
+    // setAppointmentList(data);
+    // console.log(data);
   };
 
   useEffect(() => {
-    getAppointments();
+    // getAppointments();
+
+    fetch("http://localhost:3000/api/appointment")
+      .then((res) => res.json())
+      .then((appointment) => {
+        console.log(appointment);
+        setAppointmentList(appointment.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     // const link = "192.168.1.164:3000/api/appointment";
     // fetch(link)
     //   .then((res) => res.json())
@@ -27,14 +48,14 @@ const Appointment = (props) => {
     //   .catch((err) => {
     //     console.log(err);
     //   });
-  }, [appointmentList]);
+  }, []);
 
   return (
     <div className="appointment-screen">
       <h1 className="h1-title">Manage Apppoinments</h1>
       <div className="appointment-table">
         <table>
-          <thead>
+          <thead className="item-center">
             <tr>
               <th>Name</th>
               <th>Email</th>
@@ -56,22 +77,24 @@ const Appointment = (props) => {
         
         </tbody> */}
           {appointmentList ? (
-            <tbody>
-              <tr>
-                <td>FullName</td>
-                <td>Email</td>
-                <td>phoneNumber</td>
+            appointmentList.map((appointment) => (
+              <tbody className="item-center">
+                <tr>
+                  <td>{appointment.useerName}</td>
+                  <td>{appointment.email}</td>
+                  <td>{appointment.phone}</td>
 
-                <td>
-                  <button
-                    type="button"
-                    //   onClick={(event) => handleEditClick(event, contact)}
-                  >
-                    Review
-                  </button>
-                </td>
-              </tr>
-            </tbody>
+                  <td>
+                    <button
+                      type="button"
+                      //   onClick={(event) => handleEditClick(event, contact)}
+                    >
+                      Review
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            ))
           ) : (
             <h2>All the appointents have been reviewed</h2>
           )}

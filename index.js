@@ -9,13 +9,23 @@ const auth = require("./routes/auth");
 const dog = require("./routes/dog");
 const appointment = require("./routes/appointment");
 
-const app = express();
+// const app = express();
 
 const connectDB = require("./config/db");
 connectDB();
 
 var cors = require("cors");
-// const app = express(cors({ origin: "*" }));
+const app = express(cors({ origin: "*" }));
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept,Authorization"
+  );
+  res.header("Access-Control-Allow-Methods", "*");
+  next();
+});
 
 app.use(express.json());
 dotenv.config({ path: "./config/config.env" });
@@ -32,4 +42,4 @@ app.use("/api/appointment", appointment);
 const PORT = process.env.PORT || 3000;
 const ipAdd = process.env.IP_ADD;
 
-app.listen(PORT, ipAdd, console.log("Server running in " + ipAdd + ":" + PORT));
+app.listen(PORT, console.log("Server running in " + ipAdd + ":" + PORT));
