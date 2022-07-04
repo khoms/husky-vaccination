@@ -2,6 +2,7 @@ const ErrorResponse = require("../utils/errorResponse");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const User = require("../models/user");
 const Admin = require("../models/admin");
+const sendToken = require("../middleware/jwtToken");
 
 exports.register = async (req, res, next) => {
   const { name, email, password, role } = req.body;
@@ -15,9 +16,11 @@ exports.register = async (req, res, next) => {
     });
 
     //Create Token
-    const token = user.getSignedJwtToken();
+    // const token = user.getSignedJwtToken();
 
-    res.status(200).json({ success: true, token, data: user.id });
+    // res.status(200).json({ success: true, token, data: user.id });
+
+    sendToken(user, 200, res);
   } catch (error) {
     next(err);
   }
@@ -49,7 +52,9 @@ exports.userLogin = async (req, res, next) => {
     //Create Token
     const token = user.getSignedJwtToken();
 
-    res.status(200).json({ success: true, token, data: user.id });
+    // res.status(200).json({ success: true, token, data: user.id });
+
+    sendToken(user, 200, res);
   } catch (err) {
     next(err);
   }
@@ -81,7 +86,9 @@ exports.adminLogin = async (req, res, next) => {
     //Create Token
     const token = admin.getSignedJwtToken();
 
-    res.status(200).json({ success: true, token, data: admin.id });
+    // res.status(200).json({ success: true, token, data: admin.id });
+
+    sendToken(admin, 200, res);
   } catch (err) {
     next(err);
   }
