@@ -8,6 +8,7 @@ const user = require("./routes/user");
 const auth = require("./routes/auth");
 const dog = require("./routes/dog");
 const appointment = require("./routes/appointment");
+const admin = require("./routes/admin");
 
 // const app = express();
 
@@ -35,9 +36,13 @@ app.use(express.json());
 app.use(errorHandler);
 
 app.use("/api/user", user);
+app.use("/api/admin", admin);
 app.use("/api/auth", auth);
 app.use("/api/dog", dog);
 app.use("/api/appointment", appointment);
+
+//eerohandler middleware should be placed after the route
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 const ipAdd = process.env.IP_ADD;
