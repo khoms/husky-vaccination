@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import axios from "axios";
+// import axios from "axios";
 
 const Appointment = (props) => {
   const [appointmentList, setAppointmentList] = useState();
 
   const getAppointments = async () => {
-    fetch("http://localhost:3000/api/appointment")
+    fetch("http://192.168.1.164:3000/api/appointment")
       .then((res) => res.json())
       .then((appointment) => {
         console.log(appointment);
@@ -26,17 +26,17 @@ const Appointment = (props) => {
   };
 
   useEffect(() => {
-    // getAppointments();
+    getAppointments();
 
-    fetch("http://localhost:3000/api/appointment")
-      .then((res) => res.json())
-      .then((appointment) => {
-        console.log(appointment);
-        setAppointmentList(appointment.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // fetch("http://localhost:3000/api/appointment")
+    //   .then((res) => res.json())
+    //   .then((appointment) => {
+    //     console.log(appointment);
+    //     setAppointmentList(appointment.data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
 
     // const link = "192.168.1.164:3000/api/appointment";
     // fetch(link)
@@ -76,29 +76,30 @@ const Appointment = (props) => {
           ))}
         
         </tbody> */}
-          {appointmentList ? (
-            appointmentList.map((appointment) => (
-              <tbody className="item-center">
-                <tr>
-                  <td>{appointment.useerName}</td>
-                  <td>{appointment.email}</td>
-                  <td>{appointment.phone}</td>
+          {appointmentList
+            ? appointmentList.map((appointment) => (
+                <tbody className="item-center">
+                  <tr>
+                    <td>{appointment.useerName}</td>
+                    <td>{appointment.email}</td>
+                    <td>{appointment.phone}</td>
 
-                  <td>
-                    <button
-                      type="button"
-                      //   onClick={(event) => handleEditClick(event, contact)}
-                    >
-                      Review
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            ))
-          ) : (
-            <h2>All the appointents have been reviewed</h2>
-          )}
+                    <td>
+                      <button
+                        type="button"
+                        //   onClick={(event) => handleEditClick(event, contact)}
+                      >
+                        Review
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              ))
+            : null}
         </table>
+        {appointmentList ? null : (
+          <h2>All the appointents have been reviewed</h2>
+        )}
       </div>
     </div>
   );

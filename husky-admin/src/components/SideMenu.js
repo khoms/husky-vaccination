@@ -4,11 +4,6 @@ import user from "../assets/user.jpg";
 
 import MenuItem from "./MenuItem";
 
-/**
- * @author
- * @function SideMenu
- **/
-
 // added more menuItems for testing
 export const menuItems = [
   {
@@ -34,6 +29,12 @@ export const menuItems = [
     exact: true,
     to: `/setting`,
     iconClassName: "bi bi-gear",
+  },
+  {
+    name: "Logout",
+    exact: true,
+    to: `/logout`,
+    iconClassName: "bi bi-box-arrow-right",
   },
 ];
 

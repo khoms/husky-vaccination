@@ -70,6 +70,24 @@ td {
   display: block;
 }
 
+.navigation {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0.5rem 0rem;
+  background-color: #000;
+  color: white;
+  box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+  justify-content: end;
+  padding-right: 20px;
+  font-size: 22px;
+}
+.header-icon {
+  position: absolute;
+  right: 0px;
+}
 .side-menu {
   position: fixed;
   background: #000;
@@ -282,7 +300,8 @@ td {
 .container {
   margin-left: 300px;
   transition: margin-left 0.2s ease-in;
-  padding: 50px;
+  /* padding: 50px; */
+  padding-left: 50px;
   box-sizing: border-box;
 }
 
@@ -376,4 +395,11 @@ td {
 .home-content .total-order {
   font-size: 20px;
   font-weight: 500;
+}
+
+.login-error-message {
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  color: red;
 }
