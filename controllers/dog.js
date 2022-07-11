@@ -37,16 +37,16 @@ exports.createDog = async (req, res, next) => {
 //   }
 // };
 
-// //get all users
-// exports.getUsers = async (req, res, next) => {
-//   try {
-//     const users = await User.find();
+//get all users
+exports.getDogs = async (req, res, next) => {
+  try {
+    const dogs = await Dog.find();
 
-//     res.status(200).json({ success: true, count: users.length, data: users });
-//   } catch (err) {
-//     next(err);
-//   }
-// };
+    res.status(200).json({ success: true, count: dogs.length, data: dogs });
+  } catch (err) {
+    next(err);
+  }
+};
 
 // //update user
 // exports.updateUser = async (req, res, next) => {
