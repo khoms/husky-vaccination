@@ -7,7 +7,7 @@ const Admin = require("../models/admin");
 //Route GET/admins
 exports.getAdmins = async (req, res, next) => {
   try {
-    const admins = await Admin.create(req.body);
+    const admins = await Admin.find();
 
     res.status(200).json({ success: true, count: admins.length, data: admins });
   } catch (error) {

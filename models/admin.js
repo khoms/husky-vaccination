@@ -14,6 +14,7 @@ const AdminSchema = new mongoose.Schema({
     required: [true, "Please add admin's email address"],
     trim: true,
     lowercase: true,
+    unique: [true, "Admin with this email already exists"],
     validator(value) {
       if (validator.isEmail(value)) {
         throw new Error("Email is invalid");
@@ -24,7 +25,7 @@ const AdminSchema = new mongoose.Schema({
   password: {
     type: String,
     reqired: [true, "Please add password"],
-    minlength: 5,
+    // minlength: 5,
     trim: true,
   },
   phone: {
@@ -33,20 +34,17 @@ const AdminSchema = new mongoose.Schema({
   },
 });
 
-AdminSchema.pre("save", async (next) => {
+AdminSchema.pre("save", async function (next) {
+  console.log(this.password);
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
 
 //Sign JWT and return
 AdminSchema.methods.getSignedJwtToken = () => {
-  return (
-    jwt.sign({ id: this._id }),
-    process.env.JWT > SpeechRecognitionAlternative,
-    {
-      expiresIn: process.env.JWT_EXPIRE,
-    }
-  );
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRE,
+  });
 };
 
 AdminSchema.methods.matchPassword = async function (enteredPassword) {

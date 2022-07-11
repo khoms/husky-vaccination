@@ -1,5 +1,7 @@
 import React, { useState, useContext } from "react";
 
+import cookie from "react-cookies";
+
 import { AuthContext } from "../../provider/AuthProvider";
 
 const LoginPage = (props) => {
@@ -31,7 +33,8 @@ const LoginPage = (props) => {
     //   email: state.email,
     //   password: state.password,
     // };
-    await fetch(`http://192.168.1.164:3000/api/auth/userLogin`, {
+    await fetch(`http://192.168.1.164:3000/api/auth/adminLogin`, {
+      withCredentials: true,
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,6 +53,7 @@ const LoginPage = (props) => {
         if (data.success) {
           setError(data.error);
           localStorage.setItem("ACCESS_TOKEN_NAME", data.token);
+          cookie.save("token", data.token);
           getToken();
         }
         if (data.success == false) {
@@ -109,10 +113,16 @@ const LoginPage = (props) => {
   // };
 
   return (
-    <>
+    <div
+      className="login-div"
+      style={{
+        backgroundImage: `url("https://img.freepik.com/free-vector/white-background-with-circular-lines-copy-space_23-2148822143.jpg?t=st=1657303301~exp=1657303901~hmac=695fb33862f22607a966c4363551552a18e1f56513dfffaae86cf92129bb46cb&w=1380")`,
+        height: "100vh",
+      }}
+    >
       <section>
         {login ? (
-          <div className="container h-100">
+          <div className="login-box">
             <div className="row justify-content-sm-center h-100">
               <div className="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
                 <div className="text-center my-5">
@@ -333,7 +343,7 @@ const LoginPage = (props) => {
           // </div>
         )}
       </section>
-    </>
+    </div>
   );
 };
 
