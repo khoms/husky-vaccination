@@ -33,7 +33,7 @@ const LoginPage = (props) => {
     //   email: state.email,
     //   password: state.password,
     // };
-    await fetch(`http://192.168.1.164:3000/api/auth/adminLogin`, {
+    await fetch(`https://husky-circle.herokuapp.com/api/auth/adminLogin`, {
       withCredentials: true,
       method: "POST",
       headers: {

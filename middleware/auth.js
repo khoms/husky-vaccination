@@ -8,6 +8,7 @@ const ErrorResponse = require("../utils/errorResponse");
 
 exports.isAuthenticatedAdmin = catchAsyncErrors(async (req, res, next) => {
   const token = req.cookies;
+  console.log(req.cookies);
 
   if (!token) {
     return next(new ErrorResponse("You neeed to log in for this action.", 401));

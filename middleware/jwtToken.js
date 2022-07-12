@@ -17,6 +17,7 @@ const sendToken = (user, statusCode, res) => {
     token,
     user,
   });
+  res.header("Authorization", "Bearer " + token);
 };
 
 module.exports = sendToken;
