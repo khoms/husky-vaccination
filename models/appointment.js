@@ -4,7 +4,7 @@ const AppointmentSchema = new mongoose.Schema({
   userName: {
     type: String,
   },
-  dogNName: {
+  dogName: {
     type: String,
   },
   email: {
@@ -38,7 +38,7 @@ const AppointmentSchema = new mongoose.Schema({
   status: {
     type: String,
     default: "Requested",
-    enum: ["Requested", "Under Review", "Booked"],
+    enum: ["Requested", "UnderReview", "Booked"],
   },
 });
 

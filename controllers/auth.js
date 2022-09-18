@@ -91,3 +91,15 @@ exports.adminLogin = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.adminLogout = catchAsyncErrors(async (req, res, next) => {
+  res.cookie("token", null, {
+    expires: new Date(Date.now()),
+    httpOnly: true,
+  });
+
+  res.status(200).json({
+    success: true,
+    message: "loggedOut",
+  });
+});

@@ -12,11 +12,13 @@ const { isAuthenticatedAdmin } = require("../middleware/auth");
 const router = new express.Router();
 router
   .route("/")
-  .get(isAuthenticatedAdmin, getAppointments)
+  .get(getAppointments)
+  // .get(isAuthenticatedAdmin, getAppointments)
   .post(createAppointment);
 // router.route('/').get(getUsers).post(createUser)
 router
   .route("/:id")
-  .get(isAuthenticatedAdmin, getAppointment)
+  .get(getAppointment)
+  // .get(isAuthenticatedAdmin, getAppointment)
   .put(isAuthenticatedAdmin, updateAppointment);
 module.exports = router;

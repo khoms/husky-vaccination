@@ -7,15 +7,43 @@ const ErrorResponse = require("../utils/errorResponse");
 //check if admin is authenticated or not
 
 exports.isAuthenticatedAdmin = catchAsyncErrors(async (req, res, next) => {
-  const token = req.cookies;
-  console.log(req.cookies);
+  const { token } = req.cookies;
+
+  // console.log(req);
+
+  console.log(token);
+
+  // let token;
+
+  // if (
+  //   req.headers.authorization &&
+  //   req.headers.authorization.includes("Bearer")
+  // ) {
+  //   token = req.headers.authorization.split(" ")[1];
+  // }
 
   if (!token) {
-    return next(new ErrorResponse("You neeed to log in for this action.", 401));
+    return next(
+      new ErrorResponse("You neeed to log in for this action. sk", 401)
+    );
   }
 
-  const decoded = jwt.verify(token, process.env.JWT_SECRET);
-  req.admin = await Admin.findById(decoded.id);
+  // const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  // req.admin = await Admin.findById(decoded.id);
 
-  next();
+  // next();
+
+  try {
+    //verify token
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    console.log(decoded);
+
+    req.admin = await Admin.findById(decoded.id);
+
+    next();
+  } catch (err) {
+    return next(new ErrorResponse("Not authorize to access this route", 401));
+  }
 });

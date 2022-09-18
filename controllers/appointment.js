@@ -8,6 +8,7 @@ const Appointment = require("../models/appointment");
 exports.getAppointments = async (req, res, next) => {
   try {
     const appointments = await Appointment.find();
+    console.log(appointments);
 
     res.status(200).json({
       success: true,

@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const dotenv = require("dotenv");
+const cookieParser = require("cookie-parser");
 
 const errorHandler = require("./middleware/error");
 
@@ -22,6 +23,7 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
+    "content-type",
     "Origin, X-Requested-With, Content-Type, Accept,Authorization"
   );
   res.header("Access-Control-Allow-Methods", "*");
@@ -29,6 +31,7 @@ app.use(function (req, res, next) {
 });
 
 app.use(express.json());
+app.use(cookieParser());
 dotenv.config({ path: "./config/config.env" });
 
 app.use(express.json());
