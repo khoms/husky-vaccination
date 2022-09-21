@@ -2,7 +2,7 @@ const ErrorResponse = require("../utils/errorResponse");
 const Dog = require("../models/dog");
 const Vaccine = require("../models/vaccine");
 
-//create new user
+//create new dog
 exports.createDog = async (req, res, next) => {
   try {
     let name, breed, totalDays, gender, userId, vaccine;
@@ -51,7 +51,7 @@ exports.getDogs = async (req, res, next) => {
 // //update dog
 exports.updateDog = async (req, res, next) => {
   try {
-    const user = await Dog.findByIdAndUpdate(req.params.id, req.body, {
+    const dog = await Dog.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     });
