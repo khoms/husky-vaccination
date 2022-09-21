@@ -22,22 +22,22 @@ exports.createDog = async (req, res, next) => {
   }
 };
 
-//get single user
-// exports.getUser = async (req, res, next) => {
-//   try {
-//     const user = await User.findById(req.params.id);
-//     if (!user) {
-//       return next(
-//         new ErrorResponse("User not found with the id of " + req.params.id, 404)
-//       );
-//     }
-//     res.status(200).json({ success: true, data: user });
-//   } catch (err) {
-//     next(err);
-//   }
-// };
+// get single dog
+exports.getDog = async (req, res, next) => {
+  try {
+    const dog = await Dog.findById(req.params.id);
+    if (!dog) {
+      return next(
+        new ErrorResponse("Dog not found with the id of " + req.params.id, 404)
+      );
+    }
+    res.status(200).json({ success: true, data: dog });
+  } catch (err) {
+    next(err);
+  }
+};
 
-//get all users
+//get all fogs
 exports.getDogs = async (req, res, next) => {
   try {
     const dogs = await Dog.find();
@@ -48,31 +48,31 @@ exports.getDogs = async (req, res, next) => {
   }
 };
 
-// //update user
-// exports.updateUser = async (req, res, next) => {
-//   try {
-//     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
-//       new: true,
-//       runValidators: true,
-//     });
-//     if (!user) {
-//       return res.status(400).json({ success: false });
-//     }
-//     res.status(200).json({ success: true, data: user });
-//   } catch (err) {
-//     res.status(400).json({ success: false });
-//   }
-// };
+// //update dog
+exports.updateDog = async (req, res, next) => {
+  try {
+    const user = await Dog.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (!dog) {
+      return res.status(400).json({ success: false });
+    }
+    res.status(200).json({ success: true, data: dog });
+  } catch (err) {
+    res.status(400).json({ success: false });
+  }
+};
 
-// //delete user
-// exports.deleteUser = async (req, res, next) => {
-//   try {
-//     const user = await User.findByIdAndDelete(req.params.id);
-//     if (!user) {
-//       return res.status(400).json({ success: false });
-//     }
-//     res.status(200).json({ success: true, data: {} });
-//   } catch (err) {
-//     res.status(400).json({ success: false });
-//   }
-// };
+// //delete dog
+exports.deleteDog = async (req, res, next) => {
+  try {
+    const dog = await Dog.findByIdAndDelete(req.params.id);
+    if (!dog) {
+      return res.status(400).json({ success: false });
+    }
+    res.status(200).json({ success: true, data: {} });
+  } catch (err) {
+    res.status(400).json({ success: false });
+  }
+};
