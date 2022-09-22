@@ -18,6 +18,10 @@ const AppointmentSchema = new mongoose.Schema({
       }
     },
   },
+  vaccine: {
+    type: String,
+    required: [true, "Vaccine Detail is needed"],
+  },
   address: {
     type: String,
     required: [true, "Your current address is required"],
