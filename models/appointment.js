@@ -44,6 +44,10 @@ const AppointmentSchema = new mongoose.Schema({
     default: "Requested",
     enum: ["Requested", "UnderReview", "Booked"],
   },
+
+  serviceType: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("Appointment", AppointmentSchema);

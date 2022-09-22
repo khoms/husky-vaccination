@@ -15,7 +15,7 @@ const vaccineSchema = new mongoose.Schema({
   parvoVirus: {
     scheduletime: {
       type: Number,
-      default: 50,
+      default: 75,
     },
     isVaccinated: {
       type: Boolean,
@@ -25,7 +25,7 @@ const vaccineSchema = new mongoose.Schema({
   leptospirosis: {
     scheduletime: {
       type: Number,
-      default: 50,
+      default: 75,
     },
     isVaccinated: {
       type: Boolean,
@@ -35,7 +35,7 @@ const vaccineSchema = new mongoose.Schema({
   hepatitis: {
     scheduletime: {
       type: Number,
-      default: 50,
+      default: 100,
     },
     isVaccinated: {
       type: Boolean,
@@ -46,7 +46,7 @@ const vaccineSchema = new mongoose.Schema({
   rabies: {
     scheduletime: {
       type: Number,
-      default: 50,
+      default: 120,
     },
     isVaccinated: {
       type: Boolean,
