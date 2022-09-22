@@ -9,12 +9,9 @@ const dogSchema = new mongoose.Schema({
     type: String,
     required: [true, "Bredd name is required"],
   },
-  totalDays: {
-    type: Number,
-    required: [
-      true,
-      "Please enter the total days count of your dog from birth",
-    ],
+  dob: {
+    type: Date,
+    required: [true, "Please enter  birth date of your dog"],
   },
   gender: {
     type: String,
@@ -23,8 +20,8 @@ const dogSchema = new mongoose.Schema({
   },
   imageUrl: {
     type: String,
-    required: true,
-    default: "https://iol.edu.np/wp-content/uploads/2021/03/unnamed.png",
+    // required: true,
+    // default: "https://iol.edu.np/wp-content/uploads/2021/03/unnamed.png",
   },
   vaccine: {
     type: Array,
@@ -33,6 +30,9 @@ const dogSchema = new mongoose.Schema({
   userId: {
     type: String,
     required: [true, "UserId is required"],
+  },
+  description: {
+    type: String,
   },
 });
 

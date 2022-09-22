@@ -1,5 +1,8 @@
 const ErrorResponse = require("../utils/errorResponse");
 const path = require("path");
+const catchAsyncErrors = require("../middleware/catchAsyncErrors");
+
+const sendEmail = require("../utils/sendEmail");
 
 const Admin = require("../models/admin");
 
@@ -80,3 +83,24 @@ exports.deleteAdmin = async (req, res, next) => {
 
   // res.status(200).json({success:true,msg:'Delete admin'+req.params.id});
 };
+
+exports.sendMail = catchAsyncErrors(async (req, res, next) => {
+  // email= req.body.email;
+  const message = req.body.message;
+  const email = req.body.email;
+
+  try {
+    await sendEmail({
+      email: email,
+      subject: "Vaccination Bookings Details",
+      message,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: `Email sent to `,
+    });
+  } catch (error) {
+    return next(new ErrorResponse(error.message, 500));
+  }
+});

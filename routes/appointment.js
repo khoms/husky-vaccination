@@ -20,5 +20,6 @@ router
   .route("/:id")
   .get(getAppointment)
   // .get(isAuthenticatedAdmin, getAppointment)
-  .put(isAuthenticatedAdmin, updateAppointment);
+  // .put(isAuthenticatedAdmin, updateAppointment);
+  .put(updateAppointment);
 module.exports = router;

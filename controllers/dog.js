@@ -9,9 +9,10 @@ exports.createDog = async (req, res, next) => {
     const data = {
       name: req.body.name,
       breed: req.body.breed,
-      totalDays: req.body.totalDays,
+      dob: req.body.dob,
       gender: req.body.gender,
       userId: req.body.userId,
+      description: req.body.description,
       vaccine: new Vaccine(),
     };
     const dog = await Dog.create(data);
