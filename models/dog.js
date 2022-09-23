@@ -24,7 +24,7 @@ const dogSchema = new mongoose.Schema({
     // default: "https://iol.edu.np/wp-content/uploads/2021/03/unnamed.png",
   },
   vaccine: {
-    type: Object,
+    type: Array,
   },
 
   userId: {
